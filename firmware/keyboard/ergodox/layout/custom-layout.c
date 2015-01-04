@@ -112,7 +112,7 @@ shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
 // right hand ..... ......... ......... ......... ......... ......... .........
                F12,       F6,       F7,       F8,       F9,      F10,    power,
             transp,    tilde,     plus,    equal,   transp,   transp,   transp,
-                      arrowL,   arrowU,   arrowD,   arrowR, dblQuote,   transp,
+                      arrowL,   arrowD,   arrowU,   arrowR, dblQuote,   transp,
             transp,   transp,     dash,   transp,   transp,   transp,   transp,
                                 transp,   transp,   transp,   transp,   transp,
   volumeD,   volumeU,
