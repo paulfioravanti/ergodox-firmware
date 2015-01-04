@@ -222,6 +222,8 @@ KEYS__DEFAULT(    prScr,          KEYBOARD__PrintScreen                );
 // international and language
 KEYS__DEFAULT(    nonUSBkslash,   KEYBOARD__NonUS_Backslash_Pipe       );
 KEYS__DEFAULT(    nonUSPound,     KEYBOARD__NonUS_Pound_Tilde          );
+KEYS__DEFAULT(    lang1,          KEYBOARD__LANG1                      );
+KEYS__DEFAULT(    lang2,          KEYBOARD__LANG2                      );
 
 
 // ----------------------------------------------------------------------------
