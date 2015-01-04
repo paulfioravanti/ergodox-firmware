@@ -65,6 +65,26 @@ void keys__press__rbrtab(void) {
 }
 void R(rbrtab)(void) {}
 
+// For grave accents eg àèìòù
+void keys__press__graveAcnt(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__GraveAccent_Tilde);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__GraveAccent_Tilde);
+}
+void R(graveAcnt)(void) {}
+
+// For acute accents eg áéíóú
+void keys__press__acuteAcnt(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__e_E);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__e_E);
+}
+void R(acuteAcnt)(void) {}
+
 // ----------------------------------------------------------------------------
 // layout
 // Reference key codes in firmware/lib/layout/keys.h
@@ -78,11 +98,11 @@ static layout_t layout PROGMEM = {
 // macro, unused,
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
-   grave,        1,        2,        3,        4,        5,      dash,
-     tab,        q,        w,        e,        r,        t,   bkslash,
-   ctrlL,        a,        s,        d,        f,        g,
-shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
-    caps,    ctrlL,     guiL,     altL,    alfred,
+    grave,        1,        2,        3,        4,        5,      dash,
+      tab,        q,        w,        e,        r,        t,   bkslash,
+    ctrlL,        a,        s,        d,        f,        g,
+ shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
+graveAcnt,acuteAcnt,     guiL,     altL,    alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
