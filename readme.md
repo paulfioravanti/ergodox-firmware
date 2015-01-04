@@ -1,6 +1,6 @@
-# [Firmware][ergodox-firmware] for the [ErgoDox keyboard][]
+# Firmware for the ErgoDox keyboard
 
-## Custom Layout Rationale
+### Custom Layout Rationale
 
 I wanted to change my layout in ways that were not available to me on the
 [Ergodox Layout Configurator](https://www.massdrop.com/ext/ergodox), so I started
@@ -12,8 +12,8 @@ possible.  This layout is likely to be a constant work in progress.
 
 ### Dependencies
 
-This layout was developed on Mac OSX (Yosemite), which didn't have the needed
-GNU AVR Toolchain to compile the code, so I used Brew to install it from
+This layout was developed on Mac OSX (Yosemite), which didn't have the
+GNU AVR Toolchain needed to compile the code, so I used Brew to install it from
 [homebrew-avr](https://github.com/larsimmisch/homebrew-avr):
 
     $ brew tap larsimmisch/avr
