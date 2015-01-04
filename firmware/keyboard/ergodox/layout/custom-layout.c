@@ -4,12 +4,10 @@
  * Implements the "layout" section of '.../firmware/keyboard.h'
  */
 
-
 #include "./fragments/includes.part.h"
 #include "./fragments/macros.part.h"
 #include "./fragments/types.part.h"
 #include "./fragments/variables.part.h"
-
 
 // ----------------------------------------------------------------------------
 // keys
@@ -23,13 +21,49 @@
 
 #include "./fragments/led-control.part.h"
 
-
 // ----------------------------------------------------------------------------
 // matrix control
 // ----------------------------------------------------------------------------
 
 #include "./fragments/matrix-control.part.h"
 
+// ----------------------------------------------------------------------------
+// Custom Functions
+// ----------------------------------------------------------------------------
+
+// Bring up the Alfred search bar
+void keys__press__alfred(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__Spacebar);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__Spacebar);
+}
+void R(alfred)(void) {}
+
+// Move one browser tab to the left (for Chrome and Firefox)
+void keys__press__lbrtab(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftArrow);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftArrow);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+}
+void R(lbrtab)(void) {}
+
+// Move one browser tab to the right (for Chrome and Firefox)
+void keys__press__rbrtab(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__RightArrow);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__RightArrow);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+}
+void R(rbrtab)(void) {}
 
 // ----------------------------------------------------------------------------
 // layout
@@ -48,7 +82,7 @@ static layout_t layout PROGMEM = {
      tab,        q,        w,        e,        r,        t,   bkslash,
    ctrlL,        a,        s,        d,        f,        g,
 shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
-    caps,    ctrlL,     guiL,     altL,    space,
+    caps,    ctrlL,     guiL,     altL,    alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
@@ -57,7 +91,7 @@ shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
            bkslash,        y,        u,        i,        o,        p,    quote,
                            h,        j,        k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,    comma,   period,    slash, shR2kcap,
-                                arrowL,   arrowR,    brktL,    brktR,     guiR,
+                                lbrtab,   rbrtab,    brktL,    brktR,     guiR,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
