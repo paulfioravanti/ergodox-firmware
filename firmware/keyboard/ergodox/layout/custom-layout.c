@@ -97,6 +97,28 @@ void keys__press__divvy(void) {
 }
 void R(divvy)(void) {}
 
+// Change focus to next window of app in focus
+void keys__press__chWinFoc(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__GraveAccent_Tilde);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__GraveAccent_Tilde);
+}
+void R(chWinFoc)(void) {}
+
+// Bring up default iTerm layout
+void keys__press__iterm(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftShift);
+    usb__kb__set_key(true, KEYBOARD__r_R);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftShift);
+    usb__kb__set_key(false, KEYBOARD__r_R);
+}
+void R(iterm)(void) {}
+
 // ----------------------------------------------------------------------------
 // layout
 // Reference key codes in firmware/lib/layout/keys.h
@@ -111,7 +133,7 @@ static layout_t layout PROGMEM = {
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
     grave,        1,        2,        3,        4,        5,      dash,
-      tab,        q,        w,        e,        r,        t,   bkslash,
+      tab,        q,        w,        e,        r,        t,   chWinFoc,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
 graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
@@ -123,7 +145,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
            bkslash,        y,        u,        i,        o,        p,    quote,
                            h,        j,        k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,    comma,   period,    slash, shR2kcap,
-                                lbrtab,   rbrtab,    brktL,    brktR,     guiR,
+                                lbrtab,   rbrtab,    brktL,    brktR, iterm,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
