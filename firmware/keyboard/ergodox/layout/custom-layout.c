@@ -85,6 +85,18 @@ void keys__press__acuteAcnt(void) {
 }
 void R(acuteAcnt)(void) {}
 
+// Bring up Divvy
+void keys__press__divvy(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftShift);
+    usb__kb__set_key(true, KEYBOARD__Spacebar);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftShift);
+    usb__kb__set_key(false, KEYBOARD__Spacebar);
+}
+void R(divvy)(void) {}
+
 // ----------------------------------------------------------------------------
 // layout
 // Reference key codes in firmware/lib/layout/keys.h
@@ -102,7 +114,7 @@ static layout_t layout PROGMEM = {
       tab,        q,        w,        e,        r,        t,   bkslash,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
-graveAcnt,acuteAcnt,     guiL,     altL,    alfred,
+graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
