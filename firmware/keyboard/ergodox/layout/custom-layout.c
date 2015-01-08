@@ -42,7 +42,8 @@ void keys__press__alfred(void) {
 void R(alfred)(void) {}
 
 // Move one browser tab to the left (for Chrome and Firefox)
-void keys__press__lbrtab(void) {
+// Move one terminal pane to the left (iTerm)
+void keys__press__paneLeft(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__LeftArrow);
@@ -51,10 +52,11 @@ void keys__press__lbrtab(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(lbrtab)(void) {}
+void R(paneLeft)(void) {}
 
 // Move one browser tab to the right (for Chrome and Firefox)
-void keys__press__rbrtab(void) {
+// Move one terminal pane to the right (iTerm)
+void keys__press__paneRight(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__RightArrow);
@@ -63,7 +65,43 @@ void keys__press__rbrtab(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(rbrtab)(void) {}
+void R(paneRight)(void) {}
+
+// Move one terminal pane up (iTerm)
+void keys__press__paneUp(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__UpArrow);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__UpArrow);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+}
+void R(paneUp)(void) {}
+
+// Move one terminal pane down (iTerm)
+void keys__press__paneDown(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__DownArrow);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__DownArrow);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+}
+void R(paneDown)(void) {}
+
+// Bring up default iTerm layout
+void keys__press__iterm(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftShift);
+    usb__kb__set_key(true, KEYBOARD__r_R);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftShift);
+    usb__kb__set_key(false, KEYBOARD__r_R);
+}
+void R(iterm)(void) {}
 
 // For grave accents eg àèìòù
 void keys__press__graveAcnt(void) {
@@ -107,18 +145,6 @@ void keys__press__chWinFoc(void) {
 }
 void R(chWinFoc)(void) {}
 
-// Bring up default iTerm layout
-void keys__press__iterm(void) {
-    usb__kb__set_key(true, KEYBOARD__LeftGUI);
-    usb__kb__set_key(true, KEYBOARD__LeftShift);
-    usb__kb__set_key(true, KEYBOARD__r_R);
-    usb__kb__send_report();
-    usb__kb__set_key(false, KEYBOARD__LeftGUI);
-    usb__kb__set_key(false, KEYBOARD__LeftShift);
-    usb__kb__set_key(false, KEYBOARD__r_R);
-}
-void R(iterm)(void) {}
-
 // ----------------------------------------------------------------------------
 // layout
 // Reference key codes in firmware/lib/layout/keys.h
@@ -141,11 +167,11 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
 // right hand ..... ......... ......... ......... ......... ......... .........
-             equal,        6,        7,        8,        9,        0,     dash,
-           bkslash,        y,        u,        i,        o,        p,    quote,
-                           h,        j,        k,        l,  semicol,    ctrlL,
-          lpupo1l1,        n,        m,    comma,   period,    slash, shR2kcap,
-                                lbrtab,   rbrtab,    brktL,    brktR, iterm,
+             equal,        6,        7,         8,        9,        0,     dash,
+           bkslash,        y,        u,         i,        o,        p,    quote,
+                           h,        j,         k,        l,  semicol,    ctrlL,
+          lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
+                              paneLeft, paneRight,   paneUp, paneDown,    iterm,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
