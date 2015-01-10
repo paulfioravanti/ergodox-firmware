@@ -145,6 +145,62 @@ void keys__press__chWinFoc(void) {
 }
 void R(chWinFoc)(void) {}
 
+// Conversation Toggle for Flowdock
+void keys__press__dblEsc(void) {
+    usb__kb__set_key(true, KEYBOARD__Escape);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__Escape);
+    usb__kb__send_report();
+    usb__kb__set_key(true, KEYBOARD__Escape);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__Escape);
+}
+void R(dblEsc)(void) {}
+
+// Keys to help out in Ruby development
+void P(boolAnd)(void) { KF(type_string)( PSTR("&&") ); }
+void R(boolAnd)(void) {}
+void P(boolOr)(void) { KF(type_string)( PSTR("||") ); }
+void R(boolOr)(void) {}
+void P(orEq)(void) { KF(type_string)( PSTR("||=") ); }
+void R(orEq)(void) {}
+void P(andEq)(void) { KF(type_string)( PSTR("&&=") ); }
+void R(andEq)(void) {}
+
+void P(lte)(void) { KF(type_string)( PSTR("<=") ); }
+void R(lte)(void) {}
+void P(mte)(void) { KF(type_string)( PSTR(">=") ); }
+void R(mte)(void) {}
+void P(eqTilde)(void) { KF(type_string)( PSTR("=~") ); }
+void R(eqTilde)(void) {}
+void P(bangTilde)(void) { KF(type_string)( PSTR("!~") ); }
+void R(bangTilde)(void) {}
+void P(notEq)(void) { KF(type_string)( PSTR("!=") ); }
+void R(notEq)(void) {}
+void P(proc)(void) { KF(type_string)( PSTR("->") ); }
+void R(proc)(void) {}
+void P(hashRkt)(void) { KF(type_string)( PSTR("=>") ); }
+void R(hashRkt)(void) {}
+void P(plusEq)(void) { KF(type_string)( PSTR("+=") ); }
+void R(plusEq)(void) {}
+void P(minusEq)(void) { KF(type_string)( PSTR("-=") ); }
+void R(minusEq)(void) {}
+void P(spermy)(void) { KF(type_string)( PSTR("~>") ); }
+void R(spermy)(void) {}
+void P(dbEq)(void) { KF(type_string)( PSTR("==") ); }
+void R(dbEq)(void) {}
+
+void P(dbColon)(void) { KF(type_string)( PSTR("::") ); }
+void R(dbColon)(void) {}
+void P(shovelL)(void) { KF(type_string)( PSTR("<<") ); }
+void R(shovelL)(void) {}
+void P(shovelR)(void) { KF(type_string)( PSTR(">>") ); }
+void R(shovelR)(void) {}
+void P(rangeInc)(void) { KF(type_string)( PSTR("..") ); }
+void R(rangeInc)(void) {}
+void P(rangeExc)(void) { KF(type_string)( PSTR("...") ); }
+void R(rangeExc)(void) {}
+
 // ----------------------------------------------------------------------------
 // layout
 // Reference key codes in firmware/lib/layout/keys.h
@@ -168,6 +224,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
                                                         bs,      del,      end,
 // right hand ..... ......... ......... ......... ......... ......... .........
              equal,        6,        7,         8,        9,        0,     dash,
+
            bkslash,        y,        u,         i,        o,        p,    quote,
                            h,        j,         k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
@@ -177,24 +234,24 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
    pageD,    enter,    space  ),
 // ............................................................................
 
-    MATRIX_LAYER(  // layer 2 : symbols and function keys
+    MATRIX_LAYER(  // layer 2 : Programmer's toolkit
 // macro, unused,
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
-  btldr,       F1,       F2,       F3,       F4,       F5,      F11,
-  transp,   quote, dblQuote,    colon,    equal, grtrThan,   transp,
-  transp,   brktL,    brktR,   braceL,   braceR,     pipe,
-  transp,   transp,  transp,    space,    enter,   transp,   transp,
-  transp,   transp,   transp,   transp,   transp,
+  btldr,       F1,        F2,       F3,       F4,        F5,       F11,
+   plus,    caret,     pound,   braceL,   braceR,       amp,   bkslash,
+  tilde,  percent,        at,   parenL,   parenR,      pipe,
+  grave, asterisk,    dollar,    brktL,    brktR,    exclam,     slash,
+ dblEsc,  transp,    transp,  transp,   transp,
                                                               transp,   transp,
                                                     transp,   transp,   transp,
                                                     transp,    lang2,   transp,
 // right hand ..... ......... ......... ......... ......... ......... .........
                F12,       F6,       F7,       F8,       F9,      F10,    power,
-            transp,    tilde,     plus,    equal,   transp,   transp,   transp,
-                      arrowL,   arrowD,   arrowU,   arrowR, dblQuote,   transp,
-            transp,   transp,     dash,   transp,   transp,   transp,   transp,
-                                transp,   transp,   transp,   transp,   transp,
+             andEq,  boolAnd,  hashRkt,   plusEq,      mte,  eqTilde,  shovelL,
+                      arrowL,   arrowD,   arrowU,   arrowR,     dbEq,    notEq,
+              orEq,   boolOr,     proc,  minusEq,      lte,   spermy,bangTilde,
+                                transp, rangeInc, rangeExc,   shovelR, dbColon,
   volumeD,   volumeU,
      mute,    transp,   transp,
     pause,     lang1,   transp  ),
