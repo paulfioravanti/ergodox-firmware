@@ -1,4 +1,4 @@
-/**                                                                 description
+/**
  * My QWERTY layout, at the moment.  I expect this will evolve over time.
  *
  * Implements the "layout" section of '.../firmware/keyboard.h'
@@ -158,10 +158,10 @@ static layout_t layout PROGMEM = {
 // macro, unused,
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
-    grave,        1,        2,        3,        4,        5,      dash,
+    grave,        1,        2,        3,        4,        5,        esc,
       tab,        q,        w,        e,        r,        t,   chWinFoc,
     ctrlL,        a,        s,        d,        f,        g,
- shL2kcap,        z,        x,        c,        v,        b,  lpupo1l1,
+ shL2kcap,        z,        x,        c,        v,        b,   lpupo1l1,
 graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
