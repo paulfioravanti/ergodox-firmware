@@ -135,6 +135,18 @@ void keys__press__divvy(void) {
 }
 void R(divvy)(void) {}
 
+// Bring up Skitch
+void keys__press__skitch(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftShift);
+    usb__kb__set_key(true, KEYBOARD__5_Percent);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftShift);
+    usb__kb__set_key(false, KEYBOARD__5_Percent);
+}
+void R(skitch)(void) {}
+
 // Change focus to next window of app in focus
 void keys__press__chWinFoc(void) {
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
@@ -214,7 +226,7 @@ static layout_t layout PROGMEM = {
 // macro, unused,
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
-    grave,        1,        2,        3,        4,        5,        esc,
+    grave,        1,        2,        3,        4,        5,     dblEsc,
       tab,        q,        w,        e,        r,        t,   chWinFoc,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,   lpupo1l1,
@@ -228,7 +240,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
            bkslash,        y,        u,         i,        o,        p,    quote,
                            h,        j,         k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
-                              paneLeft, paneRight,   paneUp, paneDown,    iterm,
+                              paneLeft, paneRight,   paneUp, paneDown,   skitch,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
@@ -242,7 +254,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
    plus,    caret,     pound,   braceL,   braceR,       amp,   bkslash,
   tilde,  percent,        at,   parenL,   parenR,      pipe,
   grave, asterisk,    dollar,    brktL,    brktR,    exclam,     slash,
- dblEsc,  transp,    transp,  transp,   transp,
+    esc,   transp,    transp,   transp,   transp,
                                                               transp,   transp,
                                                     transp,   transp,   transp,
                                                     transp,    lang2,   transp,
@@ -251,7 +263,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
              andEq,  boolAnd,  hashRkt,   plusEq,      mte,  eqTilde,  shovelL,
                       arrowL,   arrowD,   arrowU,   arrowR,     dbEq,    notEq,
               orEq,   boolOr,     proc,  minusEq,      lte,   spermy,bangTilde,
-                                transp, rangeInc, rangeExc,   shovelR, dbColon,
+                               dbColon, rangeInc, rangeExc,   shovelR,   iterm,
   volumeD,   volumeU,
      mute,    transp,   transp,
     pause,     lang1,   transp  ),
