@@ -1,7 +1,53 @@
 /**
- * My QWERTY layout, at the moment.  I expect this will evolve over time.
- *
  * Implements the "layout" section of '.../firmware/keyboard.h'
+ *
+ * Keymap: My Custom Layers for in QWERTY
+ *
+ * ** Layer 0
+ *
+ * ,--------------------------------------------------.    ,--------------------------------------------------.
+ * |  ~     |   1  |   2  |   3  |   4  |   5  |dblEsc|    |  =   |   6  |   7  |   8  |   9  |   0  |   -    |
+ * |--------+------+------+------+------+-------------|    |------+------+------+------+------+------+--------|
+ * | Tab    |   Q  |   W  |   E  |   R  |   T  |chWinF|    |  \   |   Y  |   U  |   I  |   O  |   P  |   '    |
+ * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
+ * | ctrlL  |   A  |   S  |   D  |   F  |   G  |------|    |------|   H  |   J  |   K  |   L  |   ;  | ctrlL  |
+ * |--------+------+------+------+------+------|lpup  |    |lpup  |------+------+------+------+------+--------|
+ * |shL2kcap|   Z  |   X  |   C  |   V  |   B  |o1l1  |    |o1l1  |   N  |   M  |   ,  |   .  |   /  |shL2kcap|
+ * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
+ *   |grvAct|acuAct| guiL |divvy |alfred|                                |paneL |paneR |paneU |paneD |skitch|
+ *   `----------------------------------'                                `----------------------------------'
+ *                                      ,-------------.    ,-------------.
+ *                                      | guiL | altL |    | altR | guiR |
+ *                               ,------|------|------|    |------+------+------.
+ *                               |      |      | home |    | pageU|      |      |
+ *                               |  bs  |  del |------|    |------| enter| space|
+ *                               |      |      | end  |    | pageD|      |      |
+ *                               `--------------------'    `--------------------'
+ *
+ ****************************************************************************************************
+ *
+ * ** Layer 1 - Programmer's Toolkit
+ *
+ * ,--------------------------------------------------.    ,--------------------------------------------------.
+ * | btldr  |  F1  |  F2  |  F3  |  F4  |  F5  | F11  |    | F12  |  F6  |  F7  |  F8  |  F9  | F10  | power  |
+ * |--------+------+------+------+------+-------------|    |------+------+------+------+------+------+--------|
+ * |   +    |   ^  |   #  |   {  |   }  |   &  |  \   |    | &&=  |  &&  |  =>  |  +=  |  >=  |  =~  |   <<   |
+ * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
+ * |   ~    |   %  |   @  |   (  |   )  |   |  |------|    |------|arrowL|arrowR|arrowU|arrowD|  ==  |   !=   |
+ * |--------+------+------+------+------+------|  /   |    | ||=  |------+------+------+------+------+--------|
+ * |   `    |   *  |   $  |   [  |   ]  |   !  |      |    |      |  ||  |  ->  |  -=  |  <=  |  ~>  |   !~   |
+ * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
+ *   | esc  |transp|transp|transp|transp|                                |  ::  |  ..  |  ... |  >>  | iterm|
+ *   `----------------------------------'                                `----------------------------------'
+ *                                      ,-------------.    ,---------------.
+ *                                      |transp|transp|    |volumeD|volumeU|
+ *                               ,------|------|------|    |-------+-------+------.
+ *                               |      |      |lang2 |    | mute  |       |      |
+ *                               |mnoSnp|skitch|------|    |-------|transp |1pass |
+ *                               |      |      |lang1 |    | pause |       |      |
+ *                               `--------------------'    `----------------------'
+ *
+ ****************************************************************************************************
  */
 
 #include "./fragments/includes.part.h"
@@ -43,7 +89,7 @@ void R(alfred)(void) {}
 
 // Move one browser tab to the left (for Chrome and Firefox)
 // Move one terminal pane to the left (iTerm)
-void keys__press__paneLeft(void) {
+void keys__press__paneL(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__LeftArrow);
@@ -52,11 +98,11 @@ void keys__press__paneLeft(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(paneLeft)(void) {}
+void R(paneL)(void) {}
 
 // Move one browser tab to the right (for Chrome and Firefox)
 // Move one terminal pane to the right (iTerm)
-void keys__press__paneRight(void) {
+void keys__press__paneR(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__RightArrow);
@@ -65,10 +111,10 @@ void keys__press__paneRight(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(paneRight)(void) {}
+void R(paneR)(void) {}
 
 // Move one terminal pane up (iTerm)
-void keys__press__paneUp(void) {
+void keys__press__paneU(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__UpArrow);
@@ -77,10 +123,10 @@ void keys__press__paneUp(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(paneUp)(void) {}
+void R(paneU)(void) {}
 
 // Move one terminal pane down (iTerm)
-void keys__press__paneDown(void) {
+void keys__press__paneD(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__DownArrow);
@@ -89,7 +135,7 @@ void keys__press__paneDown(void) {
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
 }
-void R(paneDown)(void) {}
+void R(paneD)(void) {}
 
 // Bring up default iTerm layout
 void keys__press__iterm(void) {
@@ -104,24 +150,24 @@ void keys__press__iterm(void) {
 void R(iterm)(void) {}
 
 // For grave accents eg àèìòù
-void keys__press__graveAcnt(void) {
+void keys__press__grvAct(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__GraveAccent_Tilde);
     usb__kb__send_report();
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__GraveAccent_Tilde);
 }
-void R(graveAcnt)(void) {}
+void R(grvAct)(void) {}
 
 // For acute accents eg áéíóú
-void keys__press__acuteAcnt(void) {
+void keys__press__acuAct(void) {
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
     usb__kb__set_key(true, KEYBOARD__e_E);
     usb__kb__send_report();
     usb__kb__set_key(false, KEYBOARD__LeftAlt);
     usb__kb__set_key(false, KEYBOARD__e_E);
 }
-void R(acuteAcnt)(void) {}
+void R(acuAct)(void) {}
 
 // Bring up Divvy
 void keys__press__divvy(void) {
@@ -147,15 +193,27 @@ void keys__press__skitch(void) {
 }
 void R(skitch)(void) {}
 
+// Bring up Monosnap
+void keys__press__mnoSnp(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__5_Percent);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__5_Percent);
+}
+void R(mnoSnp)(void) {}
+
 // Change focus to next window of app in focus
-void keys__press__chWinFoc(void) {
+void keys__press__chWinF(void) {
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__GraveAccent_Tilde);
     usb__kb__send_report();
     usb__kb__set_key(false, KEYBOARD__LeftGUI);
     usb__kb__set_key(false, KEYBOARD__GraveAccent_Tilde);
 }
-void R(chWinFoc)(void) {}
+void R(chWinF)(void) {}
 
 // Conversation Toggle for Flowdock
 void keys__press__dblEsc(void) {
@@ -168,6 +226,18 @@ void keys__press__dblEsc(void) {
     usb__kb__set_key(false, KEYBOARD__Escape);
 }
 void R(dblEsc)(void) {}
+
+// Bring up 1Password
+void keys__press__1pass(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftAlt);
+    usb__kb__set_key(true, KEYBOARD__Backslash_Pipe);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftAlt);
+    usb__kb__set_key(false, KEYBOARD__Backslash_Pipe);
+}
+void R(1pass)(void) {}
 
 // Keys to help out in Ruby development
 void P(boolAnd)(void) { KF(type_string)( PSTR("&&") ); }
@@ -227,10 +297,10 @@ static layout_t layout PROGMEM = {
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
     grave,        1,        2,        3,        4,        5,     dblEsc,
-      tab,        q,        w,        e,        r,        t,   chWinFoc,
+      tab,        q,        w,        e,        r,        t,   chWinF,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,   lpupo1l1,
-graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
+   grvAct,   acuAct,     guiL,    divvy,   alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
@@ -240,13 +310,13 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
            bkslash,        y,        u,         i,        o,        p,    quote,
                            h,        j,         k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
-                              paneLeft, paneRight,   paneUp, paneDown,   skitch,
+                                 paneL,     paneR,    paneU,    paneD,   skitch,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
 // ............................................................................
 
-    MATRIX_LAYER(  // layer 2 : Programmer's toolkit
+    MATRIX_LAYER(  // layer 1 : Programmer's toolkit
 // macro, unused,
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
@@ -256,8 +326,8 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
   grave, asterisk,    dollar,    brktL,    brktR,    exclam,     slash,
     esc,   transp,    transp,   transp,   transp,
                                                               transp,   transp,
-                                                    transp,   transp,   transp,
-                                                    transp,    lang2,   transp,
+                                                    transp,   transp,   lang2,
+                                                    mnoSnp,   skitch,   lang1,
 // right hand ..... ......... ......... ......... ......... ......... .........
                F12,       F6,       F7,       F8,       F9,      F10,    power,
              andEq,  boolAnd,  hashRkt,   plusEq,      mte,  eqTilde,  shovelL,
@@ -266,7 +336,7 @@ graveAcnt,acuteAcnt,     guiL,     divvy,    alfred,
                                dbColon, rangeInc, rangeExc,   shovelR,   iterm,
   volumeD,   volumeU,
      mute,    transp,   transp,
-    pause,     lang1,   transp  ),
+    pause,    transp,   1pass  ),
 
 // ............................................................................
 };
