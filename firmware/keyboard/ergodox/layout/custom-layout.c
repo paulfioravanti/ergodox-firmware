@@ -14,7 +14,7 @@
  * |--------+------+------+------+------+------|lpup  |    |lpup  |------+------+------+------+------+--------|
  * |shL2kcap|   Z  |   X  |   C  |   V  |   B  |o1l1  |    |o1l1  |   N  |   M  |   ,  |   .  |   /  |shL2kcap|
  * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
- *   |grvAct|acuAct| guiL |divvy |alfred|                                |paneL |paneR |paneU |paneD |skitch|
+ *   |grvAct|acuAct| guiL |divvy |alfred|                                |paneL |paneR |paneU |paneD | guiL |
  *   `----------------------------------'                                `----------------------------------'
  *                                      ,-------------.    ,-------------.
  *                                      | guiL | altL |    | altR | guiR |
@@ -31,13 +31,13 @@
  * ,--------------------------------------------------.    ,--------------------------------------------------.
  * | btldr  |  F1  |  F2  |  F3  |  F4  |  F5  | F11  |    | F12  |  F6  |  F7  |  F8  |  F9  | F10  | power  |
  * |--------+------+------+------+------+-------------|    |------+------+------+------+------+------+--------|
- * |   +    |   ^  |   #  |   {  |   }  |   &  |  \   |    | &&=  |  &&  |  =>  |  +=  |  >=  |  =~  |   <<   |
+ * |transp  |transp|  +=  |  &&  |  ->  |  !=  |  >=  |    |  <<  |pageU |   {  |  [   |erbOpn|transp|transp  |
  * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
- * |   ~    |   %  |   @  |   (  |   )  |   |  |------|    |------|arrowL|arrowR|arrowU|arrowD|  ==  |   !=   |
- * |--------+------+------+------+------+------|  /   |    | ||=  |------+------+------+------+------+--------|
- * |   `    |   *  |   $  |   [  |   ]  |   !  |      |    |      |  ||  |  ->  |  -=  |  <=  |  ~>  |   !~   |
+ * |transp  |transp|  &&= | ||=  |  =>  |  ==  |------|    |------|arrowL|arrowR|arrowU|arrowD| end  |transp  |
+ * |--------+------+------+------+------+------|  <=  |    | home |------+------+------+------+------+--------|
+ * |transp  |transp|  -=  |  ||  |  ~>  |  =~  |      |    |      |pageD |   }  |  ]   |erbCls|   \  |transp  |
  * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
- *   | esc  |transp|transp|transp|transp|                                |  ::  |  ..  |  ... |  >>  | iterm|
+ *   | esc  |  ::  |  ..  |  ... |  >>  |                                |transp|transp|transp|transp| iterm|
  *   `----------------------------------'                                `----------------------------------'
  *                                      ,-------------.    ,---------------.
  *                                      |transp|transp|    |volumeD|volumeU|
@@ -47,7 +47,6 @@
  *                               |      |      |lang1 |    | pause |       |      |
  *                               `--------------------'    `----------------------'
  *
- ****************************************************************************************************
  */
 
 #include "./fragments/includes.part.h"
@@ -315,7 +314,7 @@ static layout_t layout PROGMEM = {
            bkslash,        y,        u,         i,        o,        p,    quote,
                            h,        j,         k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
-                                 paneL,     paneR,    paneU,    paneD,   skitch,
+                                 paneL,     paneR,    paneU,    paneD,   guiL,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
@@ -326,19 +325,19 @@ static layout_t layout PROGMEM = {
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
   btldr,       F1,        F2,       F3,       F4,        F5,       F11,
-   plus,    caret,     pound,   braceL,   braceR,       amp,   bkslash,
-  tilde,  percent,        at,   parenL,   parenR,      pipe,
-  grave, asterisk,    dollar,    brktL,    brktR,    exclam,     slash,
-    esc,   transp,    transp,   transp,   transp,
+ transp,   transp,    plusEq,  boolAnd,     proc,     notEq,       mte,
+ transp,   transp,     andEq,     orEq,  hashRkt,      dbEq,
+ transp,   transp,   minusEq,   boolOr,   spermy,   eqTilde,       lte,
+    esc,  dbColon,  rangeInc, rangeExc,  shovelR,
                                                               transp,   transp,
                                                     transp,   transp,   lang2,
                                                     mnoSnp,   skitch,   lang1,
 // right hand ..... ......... ......... ......... ......... ......... .........
                F12,       F6,       F7,       F8,       F9,      F10,    power,
-             andEq,  boolAnd,  hashRkt,   plusEq,      mte,  eqTilde,  shovelL,
-                      arrowL,   arrowD,   arrowU,   arrowR,     dbEq,    notEq,
-              orEq,   boolOr,     proc,  minusEq,      lte,   spermy,bangTilde,
-                               dbColon, rangeInc, rangeExc,   shovelR,   iterm,
+           shovelL,    pageU,   braceL,    brktL,   erbOpn,   transp,   transp,
+                      arrowL,   arrowD,   arrowU,   arrowR,      end,   transp,
+              home,    pageD,   braceR,    brktR,   erbCls,  bkslash,   transp,
+                                transp,   transp,   transp,   transp,   iterm,
   volumeD,   volumeU,
      mute,    transp,   transp,
     pause,    transp,   1pass  ),
