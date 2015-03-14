@@ -249,6 +249,11 @@ void R(orEq)(void) {}
 void P(andEq)(void) { KF(type_string)( PSTR("&&=") ); }
 void R(andEq)(void) {}
 
+void P(erbOpn)(void) { KF(type_string)( PSTR("<%=") ); }
+void R(erbOpn)(void) {}
+void P(erbCls)(void) { KF(type_string)( PSTR("%>") ); }
+void R(erbCls)(void) {}
+
 void P(lte)(void) { KF(type_string)( PSTR("<=") ); }
 void R(lte)(void) {}
 void P(mte)(void) { KF(type_string)( PSTR(">=") ); }
