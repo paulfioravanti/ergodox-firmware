@@ -14,9 +14,9 @@ possible.  This layout is likely to be a constant work in progress.
 
 This layout was developed on Mac OSX (Yosemite), which didn't have the
 GNU AVR Toolchain needed to compile the code, so I used Brew to install it from
-[homebrew-avr](https://github.com/larsimmisch/homebrew-avr):
+[homebrew-avr](https://github.com/osx-cross/homebrew-avr):
 
-    $ brew tap larsimmisch/avr
+    $ brew tap osx-cross/avr
     $ brew install avr-libc
 
 In order to make a layout that would compile, I had to fork my branch off the
