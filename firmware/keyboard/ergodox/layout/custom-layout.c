@@ -31,13 +31,13 @@
  * ,--------------------------------------------------.    ,--------------------------------------------------.
  * | btldr  |  F1  |  F2  |  F3  |  F4  |  F5  | F11  |    | F12  |  F6  |  F7  |  F8  |  F9  | F10  | power  |
  * |--------+------+------+------+------+-------------|    |------+------+------+------+------+------+--------|
- * |transp  |transp|  +=  |  &&  |  ->  |  !=  |  >=  |    |  <<  |pageU |   {  |  [   |erbOpn|transp|transp  |
+ * |transp  |arwUp |  +=  |  &&  |  ->  |  !=  |  >=  |    |  <<  |pageU |   [  |  {   |erbOpn|coffee| troll  |
  * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
- * |transp  |transp|  &&= | ||=  |  =>  |  ==  |------|    |------|arrowL|arrowR|arrowU|arrowD| end  |transp  |
+ * |transp  |  |>  |  &&= | ||=  |  =>  |  ==  |------|    |------|arrowL|arrowR|arrowU|arrowD| end  |plsOne  |
  * |--------+------+------+------+------+------|  <=  |    | home |------+------+------+------+------+--------|
- * |transp  |transp|  -=  |  ||  |  ~>  |  =~  |      |    |      |pageD |   }  |  ]   |erbCls|   \  | 1pass  |
+ * |transp  |arwDwn|  -=  |  ||  |  ~>  |  =~  |      |    |      |pageD |   ]  |  }   |erbCls|   \  |minOne  |
  * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
- *   | esc  |  ::  |  ..  |  ... |  >>  |                                |transp|transp|transp|transp| iterm|
+ *   | esc  |  ::  |  ..  |  ... |  >>  |                                |laugh |smile | wink |neutrl|disapt|
  *   `----------------------------------'                                `----------------------------------'
  *                                      ,-------------.    ,---------------.
  *                                      |transp|transp|    |volumeD|volumeU|
@@ -159,6 +159,7 @@ void keys__press__paneD(void) {
 void R(paneD)(void) {}
 
 // Bring up default iTerm layout
+// NOTE: Not currently using since switching to tmux
 void keys__press__iterm(void) {
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__LeftShift);
@@ -249,6 +250,8 @@ void keys__press__dblEsc(void) {
 void R(dblEsc)(void) {}
 
 // Bring up 1Password
+// NOTE: Removed from layout as I tend to use
+// Alfred integration with 1Password more
 void keys__press__1pass(void) {
     usb__kb__set_key(true, KEYBOARD__LeftGUI);
     usb__kb__set_key(true, KEYBOARD__LeftAlt);
@@ -260,7 +263,7 @@ void keys__press__1pass(void) {
 }
 void R(1pass)(void) {}
 
-// Keys to help out in Ruby development
+// Keys to help out in software development
 void P(boolAnd)(void) { KF(type_string)( PSTR("&&") ); }
 void R(boolAnd)(void) {}
 void P(boolOr)(void) { KF(type_string)( PSTR("||") ); }
@@ -269,12 +272,10 @@ void P(orEq)(void) { KF(type_string)( PSTR("||=") ); }
 void R(orEq)(void) {}
 void P(andEq)(void) { KF(type_string)( PSTR("&&=") ); }
 void R(andEq)(void) {}
-
 void P(erbOpn)(void) { KF(type_string)( PSTR("<%=") ); }
 void R(erbOpn)(void) {}
 void P(erbCls)(void) { KF(type_string)( PSTR("%>") ); }
 void R(erbCls)(void) {}
-
 void P(lte)(void) { KF(type_string)( PSTR("<=") ); }
 void R(lte)(void) {}
 void P(mte)(void) { KF(type_string)( PSTR(">=") ); }
@@ -297,7 +298,6 @@ void P(spermy)(void) { KF(type_string)( PSTR("~>") ); }
 void R(spermy)(void) {}
 void P(dbEq)(void) { KF(type_string)( PSTR("==") ); }
 void R(dbEq)(void) {}
-
 void P(dbColon)(void) { KF(type_string)( PSTR("::") ); }
 void R(dbColon)(void) {}
 void P(shovelL)(void) { KF(type_string)( PSTR("<<") ); }
@@ -308,6 +308,44 @@ void P(rangeInc)(void) { KF(type_string)( PSTR("..") ); }
 void R(rangeInc)(void) {}
 void P(rangeExc)(void) { KF(type_string)( PSTR("...") ); }
 void R(rangeExc)(void) {}
+void P(pipeOp)(void) { KF(type_string)( PSTR("|>") ); }
+void R(pipeOp)(void) {}
+
+// Emoji
+void P(plsOne)(void) { KF(type_string)( PSTR(":+1:") ); }
+void R(plsOne)(void) {}
+void P(minOne)(void) { KF(type_string)( PSTR(":-1:") ); }
+void R(minOne)(void) {}
+void P(laugh)(void) { KF(type_string)( PSTR(":laughing:") ); }
+void R(laugh)(void) {}
+void P(smile)(void) { KF(type_string)( PSTR(":smile:") ); }
+void R(smile)(void) {}
+void P(sunglas)(void) { KF(type_string)( PSTR(":sunglasses:") ); }
+void R(sunglas)(void) {}
+void P(sSmile)(void) { KF(type_string)( PSTR(":simple_smile:") ); }
+void R(sSmile)(void) {}
+void P(tongue)(void) { KF(type_string)( PSTR(":stuck_out_tongue:") ); }
+void R(tongue)(void) {}
+void P(wink)(void) { KF(type_string)( PSTR(":wink:") ); }
+void R(wink)(void) {}
+void P(neutrl)(void) { KF(type_string)( PSTR(":neutral_face:") ); }
+void R(neutrl)(void) {}
+void P(disapt)(void) { KF(type_string)( PSTR(":disappointed:") ); }
+void R(disapt)(void) {}
+void P(cry)(void) { KF(type_string)( PSTR(":cry:") ); }
+void R(cry)(void) {}
+
+void P(troll)(void) { KF(type_string)( PSTR(":trollface:") ); }
+void R(troll)(void) {}
+void P(gun)(void) { KF(type_string)( PSTR(":gun:") ); }
+void R(gun)(void) {}
+void P(coffee)(void) { KF(type_string)( PSTR(":coffee:") ); }
+void R(coffee)(void) {}
+
+void P(arwUp)(void) { KF(type_string)( PSTR(":arrow_up:") ); }
+void R(arwUp)(void) {}
+void P(arwDwn)(void) { KF(type_string)( PSTR(":arrow_down:") ); }
+void R(arwDwn)(void) {}
 
 // ----------------------------------------------------------------------------
 // layout
@@ -323,7 +361,7 @@ static layout_t layout PROGMEM = {
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
     grave,        1,        2,        3,        4,        5,     dblEsc,
-      tab,        q,        w,        e,        r,        t,   chWinF,
+      tab,        q,        w,        e,        r,        t,     chWinF,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,   lpupo1l1,
    acuAct,   grvAct,     guiL,    divvy,   alfred,
@@ -332,11 +370,10 @@ static layout_t layout PROGMEM = {
                                                         bs,      del,      end,
 // right hand ..... ......... ......... ......... ......... ......... .........
              equal,        6,        7,         8,        9,        0,     dash,
-
-           pipe,        y,        u,         i,        o,        p,    quote,
+              pipe,        y,        u,         i,        o,        p,    quote,
                            h,        j,         k,        l,  semicol,    ctrlL,
           lpupo1l1,        n,        m,     comma,   period,    slash, shR2kcap,
-                                 paneL,     paneR,    paneU,    paneD,   guiL,
+                                 paneL,     paneR,    paneU,    paneD,     guiL,
     altR,    guiR,
    pageU,      nop,      nop,
    pageD,    enter,    space  ),
@@ -347,19 +384,19 @@ static layout_t layout PROGMEM = {
        K,    nop,
 // left hand ...... ......... ......... ......... ......... ......... .........
   btldr,       F1,        F2,       F3,       F4,        F5,       F11,
- transp,   transp,    plusEq,  boolAnd,     proc,     notEq,       mte,
- transp,   transp,     andEq,     orEq,  hashRkt,      dbEq,
- transp,   transp,   minusEq,   boolOr,   spermy,   eqTilde,       lte,
+ transp,    arwUp,    plusEq,  boolAnd,     proc,     notEq,       mte,
+ transp,   pipeOp,     andEq,     orEq,  hashRkt,      dbEq,
+ transp,   arwDwn,   minusEq,   boolOr,   spermy,   eqTilde,       lte,
     esc,  dbColon,  rangeInc, rangeExc,  shovelR,
                                                               transp,   transp,
                                                     transp,   transp,   lang2,
                                                     mnoSnp,   skitch,   lang1,
 // right hand ..... ......... ......... ......... ......... ......... .........
                F12,       F6,       F7,       F8,       F9,      F10,    power,
-           shovelL,    pageU,   braceL,    brktL,   erbOpn,   transp,   transp,
-                      arrowL,   arrowD,   arrowU,   arrowR,      end,   transp,
-              home,    pageD,   braceR,    brktR,   erbCls,  bkslash,   1pass,
-                                transp,   transp,   transp,   transp,   iterm,
+           shovelL,    pageU,    brktL,   braceL,   erbOpn,   coffee,    troll,
+                      arrowL,   arrowD,   arrowU,   arrowR,      end,   plsOne,
+              home,    pageD,    brktR,   braceR,   erbCls,  bkslash,   minOne,
+                                 laugh,    smile,     wink,   neutrl,   disapt,
   volumeD,   volumeU,
      mute,    transp,   transp,
     pause,    browBk,   browFw  ),
