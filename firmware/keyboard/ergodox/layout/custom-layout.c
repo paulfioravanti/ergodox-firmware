@@ -14,7 +14,7 @@
  * |--------+------+------+------+------+------|lpup  |    |lpup  |------+------+------+------+------+--------|
  * |shL2kcap|   Z  |   X  |   C  |   V  |   B  |o1l1  |    |o1l1  |   N  |   M  |   ,  |   .  |   /  |shL2kcap|
  * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
- *   |grvAct|acuAct| guiL |divvy |alfred|                                |paneL |paneR |paneU |paneD | guiL |
+ *   |acuAct|grvAct| guiL |divvy |alfred|                                |paneL |paneR |paneU |paneD | guiL |
  *   `----------------------------------'                                `----------------------------------'
  *                                      ,-------------.    ,-------------.
  *                                      | guiL | altL |    | altR | guiR |
@@ -35,7 +35,7 @@
  * |--------+------+------+------+------+------|      |    |      |------+------+------+------+------+--------|
  * |transp  |transp|  &&= | ||=  |  =>  |  ==  |------|    |------|arrowL|arrowR|arrowU|arrowD| end  |transp  |
  * |--------+------+------+------+------+------|  <=  |    | home |------+------+------+------+------+--------|
- * |transp  |transp|  -=  |  ||  |  ~>  |  =~  |      |    |      |pageD |   }  |  ]   |erbCls|   \  |transp  |
+ * |transp  |transp|  -=  |  ||  |  ~>  |  =~  |      |    |      |pageD |   }  |  ]   |erbCls|   \  | 1pass  |
  * `--------+------+------+------+------+-------------'    `-------------+------+------+------+------+--------'
  *   | esc  |  ::  |  ..  |  ... |  >>  |                                |transp|transp|transp|transp| iterm|
  *   `----------------------------------'                                `----------------------------------'
@@ -43,7 +43,7 @@
  *                                      |transp|transp|    |volumeD|volumeU|
  *                               ,------|------|------|    |-------+-------+------.
  *                               |      |      |lang2 |    | mute  |       |      |
- *                               |mnoSnp|skitch|------|    |-------|transp |1pass |
+ *                               |mnoSnp|skitch|------|    |-------|browBk |browFw|
  *                               |      |      |lang1 |    | pause |       |      |
  *                               `--------------------'    `----------------------'
  *
@@ -75,6 +75,28 @@
 // ----------------------------------------------------------------------------
 // Custom Functions
 // ----------------------------------------------------------------------------
+
+// Go to previous page in browsing history
+// Works at least with Chrome and FF
+void keys__press__browBk(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__LeftBracket_LeftBrace);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__LeftBracket_LeftBrace);
+}
+void R(browBk)(void) {}
+
+// Go to previous page in browsing history
+// Works at least with Chrome and FF
+void keys__press__browFw(void) {
+    usb__kb__set_key(true, KEYBOARD__LeftGUI);
+    usb__kb__set_key(true, KEYBOARD__RightBracket_RightBrace);
+    usb__kb__send_report();
+    usb__kb__set_key(false, KEYBOARD__LeftGUI);
+    usb__kb__set_key(false, KEYBOARD__RightBracket_RightBrace);
+}
+void R(browFw)(void) {}
 
 // Bring up the Alfred search bar
 void keys__press__alfred(void) {
@@ -304,7 +326,7 @@ static layout_t layout PROGMEM = {
       tab,        q,        w,        e,        r,        t,   chWinF,
     ctrlL,        a,        s,        d,        f,        g,
  shL2kcap,        z,        x,        c,        v,        b,   lpupo1l1,
-   grvAct,   acuAct,     guiL,    divvy,   alfred,
+   acuAct,   grvAct,     guiL,    divvy,   alfred,
                                                                 guiL,     altL,
                                                        nop,      nop,     home,
                                                         bs,      del,      end,
@@ -336,11 +358,11 @@ static layout_t layout PROGMEM = {
                F12,       F6,       F7,       F8,       F9,      F10,    power,
            shovelL,    pageU,   braceL,    brktL,   erbOpn,   transp,   transp,
                       arrowL,   arrowD,   arrowU,   arrowR,      end,   transp,
-              home,    pageD,   braceR,    brktR,   erbCls,  bkslash,   transp,
+              home,    pageD,   braceR,    brktR,   erbCls,  bkslash,   1pass,
                                 transp,   transp,   transp,   transp,   iterm,
   volumeD,   volumeU,
      mute,    transp,   transp,
-    pause,    transp,   1pass  ),
+    pause,    browBk,   browFw  ),
 
 // ............................................................................
 };
